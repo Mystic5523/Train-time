@@ -8,9 +8,8 @@
     <link src="assets/css.reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
         crossorigin="anonymous">
-    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script> crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
@@ -33,52 +32,20 @@
             <table class="table table-sm">
                 <thead>
                     <tr>
-                        <th scope="col">Employee Name</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Start Date</th>
-                        <th scope="col">Months worked</th>
-                        <th scope="col">Monthly Rate</th>
-                        <th scope="col">Total Billed</th>
+                        <th scope="col">Train Name</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Frequency</th>
+                        <th scope="col">Next Arrival</th>
+                        <th scope="col">Minutes Away</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row">Dan Johnson</th>
-                        <td>CTO</td>
-                        <td>01/16/2000</td>
-                        <td>221</td>
-                        <td>6500</td>
-                        <td>1436500</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Brett Gaynor</th>
-                        <td>Senior Developer</td>
-                        <td>03/15/2012</td>
-                        <td>75</td>
-                        <td>4500</td>
-                        <td>33750</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Ted Williams</th>
-                        <td>Developer</td>
-                        <td>11/22/2015</td>
-                        <td>30</td>
-                        <td>2500</td>
-                        <td>75000</td>
-                    </tr>
-                    <th scope="row">Fred Dryer</th>
-                    <td>QA Analyst</td>
-                    <td>01/01/2013</td>
-                    <td>65</td>
-                    <td>2000</td>
-                    <td>13000</td>
-                    </tr>
-                    <th scope="row">John Kurts</th>
-                    <td>Front end dev</td>
-                    <td>09/0s/2000</td>
-                    <td>213</td>
-                    <td>4000</td>
-                    <td>85200</td>
+                        <th scope="row">Prarie Fire</th>
+                        <td>KC</td>
+                        <td>23</td>
+                        <td>16:00</td>
+                        <td>5</td>
                     </tr>
                 </tbody>
             </table>
@@ -91,20 +58,20 @@
         <div class="card-body">
             <form>
                 <div class="form-group font-weight-bold">
-                    <label>Employee Name:</label>
-                    <input class="form-control" type="text" placeholder="Name" id="name">
+                    <label>Train Name:</label>
+                    <input class="form-control" type="text" placeholder="Name" id="tName">
                 </div>
                 <div class="form-group font-weight-bold">
-                    <label>Employee Role:</label>
-                    <input class="form-control" type="text" placeholder="Role" id="role">
+                    <label>Destination</label>
+                    <input class="form-control" type="text" placeholder="Destination" id="dest">
                 </div>
                 <div class="form-group font-weight-bold">
-                    <label>Start Date:</label>
-                    <input class="form-control" type="text" placeholder="Start date mm/dd/yyyy" id="startDate">
+                    <label>First Train Time (HH:mm - Military Time)</label>
+                    <input class="form-control" type="text" placeholder="First Arrival (HH:mm)" id="startTime">
                 </div>
                 <div class="form-group font-weight-bold">
-                    <label>Monthly Rate:</label>
-                    <input class="form-control" type="text" placeholder="Monthly Rate" id="monthlyRate">
+                    <label>Frequency (min)</label>
+                    <input class="form-control" type="text" placeholder="Frequency (min)" id="freq">
                 </div>
                 <button type="button" class="btn btn-dark" id="add">Submit</button>
             </form>

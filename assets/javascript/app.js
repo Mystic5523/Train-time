@@ -1,17 +1,17 @@
-var monthsWorked;
-var totalBilled;
-var placeHolder;
-var timeHolder;
+var nextTrain;
+var minAway;
 console.log("Hello");
 
 $(document).ready(function () {
     $("#add").click(function () {
-        var name = $("#name").val();
-        var role = $("#role").val();
-        var startDate = $("#startDate").val();
-        var monthlyRate = $("#monthlyRate").val();
-        // var markup = "<tr><th>" + name + "</th><td>" + role +  "</td><td>" + startDate + "</td><td>" + monthsWorked + "</td><td>" + monthlyRate + "</td><td>" + totalBilled + "</td></tr>";
+        event.preventDefault();
+        var tName = $("#tName").val();
+        var dest = $("#dest").val();
+        var startTime = $("#startTime").val();
+        var freq = $("#freq").val();
+        var markup = "<tr><th>" + tName + "</th><td>" + dest + "</td><td>" + freq + "</td><td>" + nextTrain + "</td><td>" + minAway + "</td></tr>";
         $("table tbody").append(markup);
+        console.log(tName, dest, startTime, freq)
     });
 });
 var config = {
@@ -19,44 +19,43 @@ var config = {
     authDomain: "train-tracker-63938.firebaseapp.com",
     databaseURL: "https://train-tracker-63938.firebaseio.com",
     projectId: "train-tracker-63938",
-    storageBucket: "",
+    storageBucket: "train-tracker-63938.appspot.com",
     messagingSenderId: "292879422217"
-};
-firebase.initializeApp(config);
+  };
+  firebase.initializeApp(config);
 
 var database = firebase.database();
 
 //initial values
-var uName = "";
-var uRole = "";
-var uSDate = "";
-var uMRate = "";
+var tName = "";
+var dest = "";
+var startTime = "";
+var freq = "";
 
 $("#add").on("click", function (event) {
     event.preventDefault();
 
-    uName = $("#name").val().trim();
-    uRole = $("#role").val().trim();
-    uSDate = $("#startDate").val().trim();
-    uMRate = $("#monthlyRate").val().trim();
+    tName = $("#tName").val().trim();
+    dest = $("#dest").val().trim();
+    startTime = $("#startTime").val().trim();
+    freq = $("#freq").val().trim();
 
     database.ref().push({
-        uName: uName,
-        uRole: uRole,
-        uSDate: uSDate,
-        uMRate: uMRate
+        tName: tName,
+        dest: dest,
+        startTime: startTime,
+        freq: freq
     });
 });
 database.ref().on("child_added", function (snapshot) {
     var sv = snapshot.val();
 
-    console.log(sv.uName);
-    console.log(sv.uRole);
-    console.log(sv.uSDate);
-    console.log(sv.uMRate);
-    var monthsWorked = moment().diff(moment(sv.uSDate), 'months');
-    var totalBilled = monthsWorked * sv.uMRate;
-    $("table tbody").append("<tr><th>" + sv.uName + "</th><td>" + sv.uRole + "</td><td>" + sv.uSDate + "</td><td>" + monthsWorked + "</td><td>" + sv.uMRate + "</td><td>" + totalBilled + "</td></tr>");
+    console.log(sv.tName);
+    console.log(sv.dest);
+    console.log(sv.startTime);
+    console.log(sv.freq);
+    var nextTrain = moment().diff(moment(sv.startTime), 'months');
+    $("table tbody").append("<tr><th>" + sv.tName + "</th><td>" + sv.dest + "</td><td>" + sv.startTime + "</td><td>" + nextTrain + "</td><td>" + sv.freq + "</td></tr>");
 
 
 })
